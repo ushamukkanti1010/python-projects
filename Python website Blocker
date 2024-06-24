@@ -1,0 +1,42 @@
+import os
+
+def block_website(website):
+  """Blocks a website by adding it to the hosts file.
+
+  Args:
+    website: The URL of the website to block.
+  """
+  hosts_path = os.path.join("C:\Windows\System32\drivers\etc", "hosts")  # Windows path
+  # For macOS/Linux, use: hosts_path = "/etc/hosts"
+
+  # Open the hosts file in append mode
+  with open(hosts_path, "a") as hosts_file:
+    # Redirect website to loopback address (127.0.0.1)
+    hosts_file.write(f"127.0.0.1 {website}\n")
+
+def unblock_website(website):
+  """Unblocks a website by removing it from the hosts file.
+
+  Args:
+    website: The URL of the website to unblock.
+  """
+  hosts_path = os.path.join("C:\Windows\System32\drivers\etc", "hosts")  # Windows path
+  # For macOS/Linux, use: hosts_path = "/etc/hosts"
+
+  # Read the original hosts content
+  with open(hosts_path, "r") as hosts_file:
+    hosts_lines = hosts_file.readlines()
+
+  # Filter out lines containing the website to unblock
+  new_hosts_lines = [line for line in hosts_lines if website not in line]
+
+  # Write the modified hosts content back to the file
+  with open(hosts_path, "w") as hosts_file:
+    hosts_file.writelines(new_hosts_lines)
+
+# Example usage
+website_to_block = "www.example.com"
+block_website(website_to_block)
+
+# Uncomment to unblock the website
+# unblock_website(website_to_block)
