@@ -1,0 +1,88 @@
+# Define a Contact class to store information
+class Contact:
+  def __init__(self, name, phone_number, email=""):
+    self.name = name
+    self.phone_number = phone_number
+    self.email = email
+
+# Define functions for managing contacts
+def add_contact():
+  """Prompts user for contact details and adds a new Contact object."""
+  name = input("Enter contact name: ")
+  phone_number = input("Enter phone number: ")
+  email = input("Enter email (optional): ")
+  contacts.append(Contact(name, phone_number, email))
+  print(f"Contact '{name}' added successfully!")
+
+def view_contacts():
+  """Prints all contacts in the contact book."""
+  if not contacts:
+    print("There are no contacts in the book yet.")
+    return
+  print("-" * 30)
+  print("Contacts:")
+  for i, contact in enumerate(contacts):
+    print(f"{i+1}. Name: {contact.name}")
+    print(f"   Phone Number: {contact.phone_number}")
+    if contact.email:
+      print(f"   Email: {contact.email}")
+    print("-" * 30)
+
+def search_contact():
+  """Prompts user for name and searches for contact."""
+  name = input("Enter contact name to search: ")
+  found = False
+  for contact in contacts:
+    if contact.name.lower() == name.lower():
+      print("-" * 30)
+      print(f"Contact Details:")
+      print(f"Name: {contact.name}")
+      print(f"Phone Number: {contact.phone_number}")
+      if contact.email:
+        print(f"Email: {contact.email}")
+      print("-" * 30)
+      found = True
+      break
+  if not found:
+    print(f"Contact '{name}' not found.")
+
+def delete_contact():
+  """Prompts user for name and deletes contact."""
+  name = input("Enter contact name to delete: ")
+  found = False
+  for i, contact in enumerate(contacts):
+    if contact.name.lower() == name.lower():
+      del contacts[i]
+      print(f"Contact '{name}' deleted successfully!")
+      found = True
+      break
+  if not found:
+    print(f"Contact '{name}' not found.")
+
+# Initialize an empty list to store contacts
+contacts = []
+
+# Main loop to display menu and manage contacts
+while True:
+  print("\nContact Book Menu:")
+  print("1. Add Contact")
+  print("2. View Contacts")
+  print("3. Search Contact")
+  print("4. Delete Contact")
+  print("5. Exit")
+
+  choice = input("Enter your choice (1-5): ")
+
+  if choice == '1':
+    add_contact()
+  elif choice == '2':
+    view_contacts()
+  elif choice == '3':
+    search_contact()
+  elif choice == '4':
+    delete_contact()
+  elif choice == '5':
+    print("Exiting Contact Book.")
+    break
+  else:
+    print("Invalid choice. Please try again.")
