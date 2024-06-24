@@ -1,0 +1,22 @@
+# Define the Mad Libs template
+template = "I went to the beach and saw a {} sunset. The sky was filled with {} clouds that looked like {}. I felt so {} that I started to {} in the sand. Suddenly, a {} appeared out of nowhere and started to {} with me. We played together until the {} when I had to go home. It was a truly {} day!"
+
+# Get user input for the words
+adjective1 = input("Enter an adjective: ")
+plural_noun = input("Enter a plural noun: ")
+food = input("Enter a food: ")
+adjective2 = input("Enter an adjective: ")
+verb1 = input("Enter a verb: ")
+animal = input("Enter an animal: ")
+verb2 = input("Enter a verb: ")
+time_of_day = input("Enter a time of day: ")
+adjective3 = input("Enter an adjective: ")
+
+# Create a list of words
+words = [adjective1, plural_noun, food, adjective2, verb1, animal, verb2, time_of_day, adjective3]
+
+# Generate the Mad Libs story
+story = template.format(*words)
+
+# Print the story
+print(story)
